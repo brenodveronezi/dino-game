@@ -58,7 +58,7 @@ function createCactus() {
                 gameOverSound = 1;
             }
             clearInterval(leftInterval);
-            document.body.innerHTML = '<h1 class="game-over">Fim de jogo</h1> <button onClick="window.location.reload();" >Jogar novamente</button>'
+            document.body.innerHTML = '<div class="container"> <h1 class="game-over">Fim de jogo</h1>  <button class="play-again" onClick="window.location.reload();" >Jogar novamente</button> </div>'
             
         }else{
             cactusPosition -= 10;
