@@ -1,8 +1,11 @@
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
+const backSound = new Audio('sound_background.mp3');
 let isJumping = false;
 let position = 0;
 let gameOverSound = 0;
+let backgroundSoundPlay = 0;
+
 
 function handleKeyUp(event) {
     if(event.keyCode === 32) {
@@ -37,6 +40,9 @@ function jump(){
 }
 
 function createCactus() {
+
+    backgroundSound();
+
     const cactus = document.createElement('div');
     let cactusPosition = 1000;
     let randomTime = Math.random() + 1000;
@@ -56,9 +62,10 @@ function createCactus() {
             if(!gameOverSound) {
                 gameOver();
                 gameOverSound = 1;
+                backgroundSoundPlay = 1;
             }
             clearInterval(leftInterval);
-            document.body.innerHTML = '<div class="container"> <h1 class="game-over">GAME OVER</h1>  <button class="play-again" onClick="window.location.reload();" >Jogar novamente</button> </div>'
+            document.body.innerHTML = '<div class="container"> <h1 class="game-over">GAME OVER</h1>  <button class="play-again" onClick="window.location.reload();" >Play Again</button> </div>'
             
         }else{
             cactusPosition -= 10;
@@ -73,6 +80,16 @@ function createCactus() {
 function gameOver(){
     const gameOverSound = new Audio('sound_gameover.wav');
     gameOverSound.play();
+}
+
+function backgroundSound(){
+    
+    if(!backgroundSoundPlay){
+        backSound.play();
+    }else{
+        backSound.pause();
+    }
+    
 }
 
 createCactus();
