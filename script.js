@@ -5,7 +5,8 @@ let isJumping = false;
 let position = 0;
 let gameOverSound = 0;
 let backgroundSoundPlay = 0;
-
+let score = 0;
+let maxScore = 0;
 
 function handleKeyUp(event) {
     if(event.keyCode === 32) {
@@ -65,7 +66,7 @@ function createCactus() {
                 backgroundSoundPlay = 1;
             }
             clearInterval(leftInterval);
-            document.body.innerHTML = '<div class="container"> <h1 class="game-over">GAME OVER</h1>  <button class="play-again" onClick="window.location.reload();" >Play Again</button> </div>'
+            document.body.innerHTML = '<div class="container"> <h1 class="game-over">GAME OVER</h1>  <button class="play-again" onClick="window.location.reload();">Play Again</button> </div>'
             
         }else{
             cactusPosition -= 10;
@@ -92,5 +93,13 @@ function backgroundSound(){
     
 }
 
+function scoreInterval(){
+    
+    let scoreInterval = setInterval(() => {
+        document.getElementById("scoreValue").innerHTML = score++;
+    }, 20)
+}
+
+scoreInterval();
 createCactus();
 document.addEventListener('keyup', handleKeyUp);
